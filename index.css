@@ -14,13 +14,18 @@ body {
 }
 
 .item_container {
+    border-bottom: 1px solid #d2d2d2;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container_start {
     display: flex;
     font-family: 'Smythe', system-ui, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-weight: 400;
     font-style: normal;
     margin: 20px 0;
     padding: 40px 0;
-    border-bottom: 1px solid #d2d2d2;
 }
 
 .item_emoji {
@@ -47,4 +52,22 @@ body {
 
 .item_price {
     font-size: 20px;
+}
+
+.container_end {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 100,
+  'GRAD' 0,
+  'opsz' 40;
+}
+
+span.md-40{
+    font-size: 40px;
 }
