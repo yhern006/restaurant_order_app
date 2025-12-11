@@ -25,7 +25,26 @@
             </div>
             <div id="modal">
                 <h4>Enter card details</h4>
-                <button class="btn-order">Pay</button>
+                <div id="form_container">
+                    <form id="payment_form">
+                        <input 
+                            type="text"
+                            id="inputName"
+                            placeholder="Enter your name"
+                        >
+                        <input
+                            type="number"
+                            id="inputCardNumber"
+                            placeholder="Enter card number"
+                        >
+                        <input
+                            type="number"
+                            id="inputCvv"
+                            placeholder="Enter CVV"
+                        >
+                    </form>
+                    <button class="btn-order">Pay</button>
+                </div>
             </div>
         </main>
         <script src="index.js" type="module"></script>

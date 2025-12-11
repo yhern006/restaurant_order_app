@@ -142,7 +142,7 @@ span.md-40{
     padding: 2px 5px;
     font-family:Arial, Helvetica, sans-serif;
     width: 400px;
-    max-height: 400px;
+    max-height: 350px;
     background-color: whitesmoke;
     border-radius: 3px;
     box-shadow: 5px 5px 250px rgba(0, 0, 0, 0.5);
@@ -150,4 +150,16 @@ span.md-40{
 
 #modal h4 {
     font-size: 20px;
+}
+
+#form_container {
+    width: 80%;
+    margin: auto;
+}
+
+#payment_form input{
+    display: block;
+    margin: 15px auto;
+    padding: 15px 10px;
+    width: 100%;
 }
