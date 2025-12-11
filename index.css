@@ -107,7 +107,6 @@ span.md-40{
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    background-color: pink;
 }
 
 .cart_item button {
@@ -115,7 +114,7 @@ span.md-40{
     margin-left: 10px;
     vertical-align: middle;
     border: none;
-    background-color: none;
+    background-color: white;
     color: #bbbbbb;
     width: 77px;
     text-align: start;

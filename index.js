@@ -1,21 +1,55 @@
 import { menuArray } from "./data.js";
 
+let orderArray = []
+
 const menuListEl = document.getElementById('menu_ul')
 const customerOrderEl = document.getElementById('customer_order')
-let orderArray = [{
-    item: "Pizza",
-    quantity: 2,
-    totalPrice: 28
-},{
-    item: "Beer",
-    quantify: 1,
-    totalPrice: 12
-}]
+
+document.addEventListener('click', function(e){
+    const menuObj = getMenuObj(e.target.dataset.add)
+    if( menuObj ){
+        addOrderItem(menuObj)
+        renderCustomerOrder()
+    }
+})
+
+function getMenuObj(item_id) {
+    for(let menuItem of menuArray){
+        if(String(menuItem.id) === item_id)
+            return menuItem
+    }
+}
+
+// returns orderArray object if menuObj is found
+function itemInOrder(menuObj) {
+    for(let orderItem of orderArray){
+        if(menuObj.name === orderItem.name){
+            return orderItem
+        }
+    }
+}
+
+function addOrderItem(menuObj) {
+    const orderItem = itemInOrder(menuObj)
+    if(orderItem){
+        orderItem.quantity++
+        orderItem.totalPrice = orderItem.quantity * menuObj.price
+    }
+    else{
+        console.log('adding item to order')
+        orderArray.push({
+            id: menuObj.id,
+            name: menuObj.name,
+            quantity: 1,
+            totalPrice: menuObj.price
+        })
+    }
+}
 
 function setup_menu() {
     menuArray.forEach(function(item){
         const item_html = `
-            <li class='menu_item'>
+            <li class='menu_item' id='${item.id}'>
                 <div class='item_container'>
                     <div class='container_start'>
                         <div class='item_emoji'>
@@ -34,7 +68,8 @@ function setup_menu() {
                         </div>
                     </div>
                     <div class='container_end'>
-                        <span class="material-symbols-outlined md-40">
+                        <span class="material-symbols-outlined md-40"
+                            data-add='${item.id}'>
                         add_circle
                         </span>
                     </div>
@@ -53,7 +88,7 @@ function renderCustomerOrder() {
         return `
             <li class='cart_item'>
                 <div class='cart_start'>
-                    ${item.item}
+                    ${item.name}
                     <button>remove</button>
                 </div>
                 $${item.totalPrice}
@@ -72,9 +107,4 @@ function getTotalOrderPrice() {
     }, 0)
 }
 
-function addOrderItem() {
-
-}
-
 setup_menu()
-renderCustomerOrder()
