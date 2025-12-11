@@ -36,7 +36,6 @@ function addOrderItem(menuObj) {
         orderItem.totalPrice = orderItem.quantity * menuObj.price
     }
     else{
-        console.log('adding item to order')
         orderArray.push({
             id: menuObj.id,
             name: menuObj.name,

@@ -131,3 +131,23 @@ span.md-40{
     border-radius: 4px;
     margin-bottom: 20px;
 }
+
+#modal {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 2px 5px;
+    font-family:Arial, Helvetica, sans-serif;
+    width: 400px;
+    max-height: 400px;
+    background-color: whitesmoke;
+    border-radius: 3px;
+    box-shadow: 5px 5px 250px rgba(0, 0, 0, 0.5);
+}
+
+#modal h4 {
+    font-size: 20px;
+}
