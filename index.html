@@ -30,20 +30,30 @@
                         <input 
                             type="text"
                             id="inputName"
+                            name="inputName"
                             placeholder="Enter your name"
+                            required
                         >
                         <input
                             type="number"
                             id="inputCardNumber"
+                            name="inputCardNumber"
                             placeholder="Enter card number"
+                            required
                         >
                         <input
                             type="number"
                             id="inputCvv"
+                            name="inputCvv"
                             placeholder="Enter CVV"
+                            required
                         >
+                        <button type="submit" 
+                            class="btn-order" 
+                            id="pay-btn">
+                            Pay
+                        </button>
                     </form>
-                    <button class="btn-order" id="pay-btn">Pay</button>
                 </div>
             </div>
             <div id="thankyou-container">

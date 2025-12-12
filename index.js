@@ -25,7 +25,7 @@ document.addEventListener('click', function(e){
     }
 
     if(e.target.id === 'pay-btn'){
-        modalEl.style.display = 'none'
+        //modalEl.style.display = 'none'
         customerOrderEl.style.display = 'none'
         orderArray = []
         displayThankyou(document.getElementById('inputName').value)
@@ -83,8 +83,6 @@ function clearModal() {
     document.getElementById('inputCardNumber').value = ''
     document.getElementById('inputCvv').value = ''
 }
-
-
 
 function setup_menu() {
     const menuListEl = document.getElementById('menu_ul')
