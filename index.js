@@ -6,13 +6,17 @@ const menuListEl = document.getElementById('menu_ul')
 const customerOrderEl = document.getElementById('customer_order')
 const modalEl = document.getElementById('modal')
 
-
 document.addEventListener('click', function(e){
-    console.log(e)
-    const menuObj = getMenuObj(e.target.dataset.add)
 
-    if( menuObj ){
+    if( e.target.dataset.add ){
+        const menuObj = getMenuObj(e.target.dataset.add)
         addOrderItem(menuObj)
+        renderCustomerOrder()
+        return
+    }
+
+    if( e.target.dataset.remove ){
+        removeOrderItem(e.target.dataset.remove)
         renderCustomerOrder()
         return
     }
@@ -23,11 +27,20 @@ document.addEventListener('click', function(e){
     }
 
     if(e.target.id === 'pay-btn'){
-        clearModal()
         modalEl.style.display = 'none'
         orderArray = []
+        displayThankyou()
+        clearModal()
+        return
     }
 })
+
+function removeOrderItem(item_id) {
+    orderArray = orderArray.filter(
+        orderItem => orderItem.id !== Number(item_id)
+    )
+    console.log(orderArray)
+}
 
 function getMenuObj(item_id) {
     for(let menuItem of menuArray){
@@ -40,6 +53,14 @@ function clearModal() {
     document.getElementById('inputName').value = ''
     document.getElementById('inputCardNumber').value = ''
     document.getElementById('inputCvv').value = ''
+}
+
+function displayThankyou() {
+    const thankyouMessageEl = document.getElementById('thankyou-message')
+    const nameValue = document.getElementById('inputName').value
+    customerOrderEl.style.display = 'none'
+    thankyouMessageEl.textContent = `Thanks, ${nameValue}! Your order is on its way!`
+    document.getElementById('thankyou-container').style.display = 'block'
 }
 
 // returns orderArray object if menuObj is found
@@ -64,6 +85,7 @@ function addOrderItem(menuObj) {
             quantity: 1,
             totalPrice: menuObj.price
         })
+        console.log(orderArray)
     }
 }
 
@@ -102,24 +124,29 @@ function setup_menu() {
 }
 
 function renderCustomerOrder() {
-    const checkoutCartEl = document.getElementById('checkout_cart')
-    const totalOrderPriceEl = document.getElementById('total_order_price')
-    
-    let order_html = orderArray.map(function(item){
-        return `
-            <li class='cart_item'>
-                <div class='cart_start'>
-                    ${item.name}
-                    <button>remove</button>
-                </div>
-                $${item.totalPrice}
-            </li>
-        `
-    }).join('')
+    if(orderArray.length > 0){
+        const checkoutCartEl = document.getElementById('checkout_cart')
+        const totalOrderPriceEl = document.getElementById('total_order_price')
+        
+        let order_html = orderArray.map(function(item){
+            return `
+                <li class='cart_item'>
+                    <div class='cart_start'>
+                        ${item.name}
+                        <button data-remove='${item.id}'>remove</button>
+                    </div>
+                    $${item.totalPrice}
+                </li>
+            `
+        }).join('')
 
-    checkoutCartEl.innerHTML = order_html
-    customerOrderEl.style.display = 'block'
-    totalOrderPriceEl.textContent = '$' + getTotalOrderPrice()
+        checkoutCartEl.innerHTML = order_html
+        customerOrderEl.style.display = 'block'
+        totalOrderPriceEl.textContent = '$' + getTotalOrderPrice()
+    }
+    else{
+        customerOrderEl.style.display = 'none'
+    }
 }
 
 function getTotalOrderPrice() {

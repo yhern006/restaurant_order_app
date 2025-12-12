@@ -168,3 +168,14 @@ span.md-40{
     border-radius: 3px;
     border: 1px solid #757575;
 }
+
+#thankyou-container {
+    font-family: 'Smythe', system-ui, 'Open Sans', 'Helvetica Neue', sans-serif;
+    display: none;
+    margin-bottom: 80px;
+    font-size: 32px;
+    color: #065F46;
+    background-color: #ECFDF5;
+    border-radius: 3px;
+    padding: 35px 60px;
+}
