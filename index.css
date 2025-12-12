@@ -130,6 +130,7 @@ span.md-40{
     border: none;
     border-radius: 4px;
     margin-bottom: 20px;
+    font-weight: 900;
 }
 
 #modal {
@@ -141,7 +142,7 @@ span.md-40{
     right: 0;
     margin: auto;
     padding: 2px 5px;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     width: 400px;
     max-height: 350px;
     background-color: whitesmoke;
@@ -159,8 +160,11 @@ span.md-40{
 }
 
 #payment_form input{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     display: block;
     margin: 15px auto;
     padding: 15px 10px;
     width: 100%;
+    border-radius: 3px;
+    border: 1px solid #757575;
 }

@@ -4,19 +4,28 @@ let orderArray = []
 
 const menuListEl = document.getElementById('menu_ul')
 const customerOrderEl = document.getElementById('customer_order')
+const modalEl = document.getElementById('modal')
+
 
 document.addEventListener('click', function(e){
     console.log(e)
     const menuObj = getMenuObj(e.target.dataset.add)
+
     if( menuObj ){
         addOrderItem(menuObj)
         renderCustomerOrder()
         return
     }
 
-    if(e.target.id === 'complete-btn') {
-        const modalEl = document.getElementById('modal')
+    if(e.target.id === 'complete-btn'){
         modalEl.style.display = 'block'
+        return
+    }
+
+    if(e.target.id === 'pay-btn'){
+        clearModal()
+        modalEl.style.display = 'none'
+        orderArray = []
     }
 })
 
@@ -25,6 +34,12 @@ function getMenuObj(item_id) {
         if(String(menuItem.id) === item_id)
             return menuItem
     }
+}
+
+function clearModal() {
+    document.getElementById('inputName').value = ''
+    document.getElementById('inputCardNumber').value = ''
+    document.getElementById('inputCvv').value = ''
 }
 
 // returns orderArray object if menuObj is found
