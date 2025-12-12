@@ -1,12 +1,10 @@
 import { menuArray } from "./data.js";
 
 let orderArray = []
-
-const menuListEl = document.getElementById('menu_ul')
 const customerOrderEl = document.getElementById('customer_order')
-const modalEl = document.getElementById('modal')
 
 document.addEventListener('click', function(e){
+    const modalEl = document.getElementById('modal')
 
     if( e.target.dataset.add ){
         const menuObj = getMenuObj(e.target.dataset.add)
@@ -28,19 +26,13 @@ document.addEventListener('click', function(e){
 
     if(e.target.id === 'pay-btn'){
         modalEl.style.display = 'none'
+        customerOrderEl.style.display = 'none'
         orderArray = []
-        displayThankyou()
+        displayThankyou(document.getElementById('inputName').value)
         clearModal()
         return
     }
 })
-
-function removeOrderItem(item_id) {
-    orderArray = orderArray.filter(
-        orderItem => orderItem.id !== Number(item_id)
-    )
-    console.log(orderArray)
-}
 
 function getMenuObj(item_id) {
     for(let menuItem of menuArray){
@@ -49,31 +41,9 @@ function getMenuObj(item_id) {
     }
 }
 
-function clearModal() {
-    document.getElementById('inputName').value = ''
-    document.getElementById('inputCardNumber').value = ''
-    document.getElementById('inputCvv').value = ''
-}
-
-function displayThankyou() {
-    const thankyouMessageEl = document.getElementById('thankyou-message')
-    const nameValue = document.getElementById('inputName').value
-    customerOrderEl.style.display = 'none'
-    thankyouMessageEl.textContent = `Thanks, ${nameValue}! Your order is on its way!`
-    document.getElementById('thankyou-container').style.display = 'block'
-}
-
-// returns orderArray object if menuObj is found
-function itemInOrder(menuObj) {
-    for(let orderItem of orderArray){
-        if(menuObj.name === orderItem.name){
-            return orderItem
-        }
-    }
-}
-
 function addOrderItem(menuObj) {
     const orderItem = itemInOrder(menuObj)
+    
     if(orderItem){
         orderItem.quantity++
         orderItem.totalPrice = orderItem.quantity * menuObj.price
@@ -85,11 +55,40 @@ function addOrderItem(menuObj) {
             quantity: 1,
             totalPrice: menuObj.price
         })
-        console.log(orderArray)
     }
 }
 
+// returns orderArray object if menuObj is found
+function itemInOrder(menuObj) {
+    for(let orderItem of orderArray){
+        if(menuObj.name === orderItem.name){
+            return orderItem
+        }
+    }
+}
+
+function removeOrderItem(item_id) {
+    orderArray = orderArray.filter(
+        orderItem => orderItem.id !== Number(item_id) )
+}
+
+function displayThankyou(nameValue) {
+    const thankyouMessageEl = document.getElementById('thankyou-message')
+    thankyouMessageEl.textContent = `Thanks, ${nameValue}! Your order is on its way!`
+    document.getElementById('thankyou-container').style.display = 'block'
+}
+
+function clearModal() {
+    document.getElementById('inputName').value = ''
+    document.getElementById('inputCardNumber').value = ''
+    document.getElementById('inputCvv').value = ''
+}
+
+
+
 function setup_menu() {
+    const menuListEl = document.getElementById('menu_ul')
+
     menuArray.forEach(function(item){
         const item_html = `
             <li class='menu_item' id='${item.id}'>
