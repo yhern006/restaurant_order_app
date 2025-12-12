@@ -6,10 +6,17 @@ const menuListEl = document.getElementById('menu_ul')
 const customerOrderEl = document.getElementById('customer_order')
 
 document.addEventListener('click', function(e){
+    console.log(e)
     const menuObj = getMenuObj(e.target.dataset.add)
     if( menuObj ){
         addOrderItem(menuObj)
         renderCustomerOrder()
+        return
+    }
+
+    if(e.target.id === 'complete-btn') {
+        const modalEl = document.getElementById('modal')
+        modalEl.style.display = 'block'
     }
 })
 
