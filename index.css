@@ -11,6 +11,18 @@ body {
     background-size: cover;
 }
 
+header {
+    position: relative;
+}
+
+h1 {
+    font-size: 35px;
+    color: whitesmoke;
+    position: absolute;
+    top: 0;
+    left: 30px;
+}
+
 #menu_ul {
     list-style-type: none;
     padding: 0;
