@@ -2,9 +2,10 @@ import { menuArray } from "./data.js";
 
 let orderArray = []
 const customerOrderEl = document.getElementById('customer_order')
+const paymentFormEl = document.getElementById('payment-form')
+const modalEl = document.getElementById('modal')
 
 document.addEventListener('click', function(e){
-    const modalEl = document.getElementById('modal')
 
     if( e.target.dataset.add ){
         const menuObj = getMenuObj(e.target.dataset.add)
@@ -19,19 +20,20 @@ document.addEventListener('click', function(e){
         return
     }
 
-    if(e.target.id === 'complete-btn'){
+    if(e.target.id === 'complete-btn') {
         modalEl.style.display = 'block'
         return
     }
+})
 
-    if(e.target.id === 'pay-btn'){
-        //modalEl.style.display = 'none'
-        customerOrderEl.style.display = 'none'
-        orderArray = []
-        displayThankyou(document.getElementById('inputName').value)
-        clearModal()
-        return
-    }
+paymentFormEl.addEventListener('submit', function(e){
+    e.preventDefault()
+    console.log('submitted form')
+    modalEl.style.display = 'none'
+    displayThankyou(document.getElementById('inputName').value)
+    clearModal()
+    orderArray = []
+    renderCustomerOrder()
 })
 
 function getMenuObj(item_id) {

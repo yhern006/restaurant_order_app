@@ -26,7 +26,7 @@
             <div id="modal">
                 <h4>Enter card details</h4>
                 <div id="form_container">
-                    <form id="payment_form">
+                    <form id="payment-form">
                         <input 
                             type="text"
                             id="inputName"
@@ -42,10 +42,11 @@
                             required
                         >
                         <input
-                            type="number"
+                            type="text"
                             id="inputCvv"
                             name="inputCvv"
                             placeholder="Enter CVV"
+                            pattern="\d{3}"
                             required
                         >
                         <button type="submit" 
